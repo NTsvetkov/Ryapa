@@ -1,2 +1,2 @@
-# Проект за авиоотряда
+# Erepublik misc scripts for the game
 
