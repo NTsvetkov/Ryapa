@@ -1,5 +1,5 @@
 <?php
-require ("db.inc.php");
+require("db.inc.php");
 unset ($_SESSION[$sessionName]);
 header('Location: /');
 

@@ -1,6 +1,8 @@
 <?php
 
-require ("db.inc.php");
+// JSON output for the script
+
+require("db.inc.php");
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 

@@ -1,5 +1,5 @@
 <?php
-require ("db.inc.php");
+require("db.inc.php");
 
 if (!empty($_SESSION[$sessionName]) && !empty($_POST['caption'])) {
     $caption = $dblink->escapeString($_POST['caption']);
@@ -13,7 +13,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_POST['caption'])) {
         VALUES
             ('$caption', '$link', '$priority', '$countryT', $importance) ";
     $dblink->query($sql);
-    $_SESSION['success'] = "Добавено/Added";
+    $_SESSION['success'] = "Added";
     header("Location: $self");
     exit;
 } else if (!empty($_POST['caption']) && empty($_SESSION[$sessionName])) {
@@ -22,7 +22,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_POST['caption'])) {
     exit;
 }
 if (!empty($_POST['username'])) {
-    if ($_POST['username'] == 'master' and $_POST['password'] == 'Dr$mAQu33n') {
+    if ($_POST['username'] == 'master' and $_POST['password'] == 'Dr$mAQu33n') { // user/password in plain text. Can be changed. :-D
         $_SESSION[$sessionName] = true;
         header("Location: $self");
         exit;
@@ -34,7 +34,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
         $sql = "DELETE FROM `orders` WHERE `id` = '$id'";
         $dblink->query($sql);
     }
-    $_SESSION['success'] = "Изтрито/Deleted";
+    $_SESSION['success'] = "Deleted";
     header("Location: $self");
     exit;
 }
@@ -44,7 +44,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ряпа тулс</title>
+        <title>Erepublik tools</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -78,7 +78,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
         <div class="container">
             <div class="col-lg-6">
                 <ul class="list-group">
-                    <li class="list-group-item active">Военни инструкции / Battle orders</li>
+                    <li class="list-group-item active">Battle orders</li>
                     <?php
                     $sql = "SELECT id, caption, link, date, priority, importance, country
                             FROM orders 
@@ -103,15 +103,15 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
                                 <a href='$link' title='$date' target='_blank'>$caption</a>";
                             if (!empty($_SESSION[$sessionName])) {
                                 echo "
-                                <button type='button' class='btn btn-xs btn-danger pull-right' onclick='dn($id)' title='изтрий/delete'>X</button>";
+                                <button type='button' class='btn btn-xs btn-danger pull-right' onclick='dn($id)' title='delete'>X</button>";
                             }
                             echo "
-                                <span class='pull-right badge importance' title='Важност/Importance'>$importance</span>
+                                <span class='pull-right badge importance' title='Importance'>$importance</span>
                             </li>
                             ";
                         }
                     } else {
-                        echo "<li class='list-group-item'>Няма зададени инструкции / No orders set</li>\n";
+                        echo "<li class='list-group-item'>No orders set</li>\n";
                     }
                     ?>
                 </ul>
@@ -119,7 +119,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
             <?php if (empty($_SESSION[$sessionName])) { ?>
                 <div class="col-lg-6">
                     <form class="form-signin" method="post" action="index.php">
-                        <h2 class="form-signin-heading">Моля, оторизирайте се / Please authorize</h2>
+                        <h2 class="form-signin-heading">Please authorize</h2>
                         <div class="form-group">
                             <label for="inputUser" class="sr-only">Username</label>
                             <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" required autofocus>
@@ -128,7 +128,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
                             <label for="inputPassword" class="sr-only">Password</label>
                             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Влез/Log in</button>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                     </form>
                 </div>
             <?php } ?>
@@ -139,7 +139,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
                         <?php if (!empty($_SESSION['success'])) { ?>
                             <div class="alert alert-success">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                Готово!
+                                Order set!
                             </div>
                             <?php
                             unset($_SESSION['success']);
@@ -147,9 +147,9 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
                         ?>
                         <form method="post" action="<?php echo $self; ?>">
                             <div class="form-group">
-                                <label>Държава/Country</label>
+                                <label>Country</label>
                                 <select name="country" class="form-control">
-                                    <option value="" selected="selected">Изберете държава/Select country</option>
+                                    <option value="" selected="selected">Select country</option>
                                     <?php
                                     foreach ($countries as $cId => $cName) {
                                         echo "                                    <option value='$cId'>$cName</option>\n";
@@ -158,41 +158,41 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Регион (инструкция)/Region (instructions)</label>
-                                <input type="text" class="form-control" name="caption" value="" placeholder="Формат/Example.: Region (регионът на английски)/(english)" required>
+                                <label>Region (instructions)</label>
+                                <input type="text" class="form-control" name="caption" value="" placeholder="Example.: Region (English name)" required>
                             </div>
                             <div class="form-group">
-                                <label>Връзка към битката/Link to battle</label>
+                                <label>Link to the battle</label>
                                 <input type="text" class="form-control" name="link" value="" placeholder="https://www.erepublik.com/en/military/battlefield/76842">
                             </div>
                             <div class="form-group">
-                                <label>Приоритет/Priority</label>
+                                <label>Priority</label>
                                 <select name="priority" class="form-control">
-                                    <option value="1">Въстание, червен флаг (освобождаваме)/ RW, red flag (releasing)</option>
-                                    <option value="2">Въстание, зелен флаг (пазим)/ RW, green flag (keep)</option>
-                                    <option value="3" selected="">Директна сив флаг/Direct battle grey flag</option>
-                                    <option value="4">Директна син флаг/Direct battle blue flag</option>
-                                    <option value="5">Директна зелен флаг/Direct battle green flag</option>
-                                    <option value="6">Директна червен флаг/Direct battle red flag</option>
-                                    <option value="7">Директна черен флаг/Direct battle black flag</option>
+                                    <option value="1">RW, red flag (releasing)</option>
+                                    <option value="2">RW, green flag (keep)</option>
+                                    <option value="3" selected="">Direct battle grey flag</option>
+                                    <option value="4">Direct battle blue flag</option>
+                                    <option value="5">Direct battle green flag</option>
+                                    <option value="6">Direct battle red flag</option>
+                                    <option value="7">Direct battle black flag</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Важност (заплащане)/Importance (wage)</label>
+                                <label>Importance (wage)</label>
                                 <select name="importance" class="form-control">
-                                    <option value="0" selected="">Сив/син флаг/ Grey/blue flag</option>
-                                    <option value="1">Зелен флаг/ Green flag</option>
-                                    <option value="2">Червен флаг/ Red flag</option>
-                                    <option value="3">Черен флаг/ Black flag</option>
+                                    <option value="0" selected="">Grey/blue flag</option>
+                                    <option value="1">Green flag</option>
+                                    <option value="2">Red flag</option>
+                                    <option value="3">Black flag</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-success">Задай / Set</button>
+                                <button type="submit" class="form-control btn btn-success">Set</button>
                             </div>
                         </form>
                         <?php if (true) { ?>
                         <div class="form-group">
-                            <button type="button" onclick="location.href = 'instrukcii.php'" class="form-control btn btn-info">Инструкции за вестника / Code for the newspaper</button>
+                            <button type="button" onclick="location.href = 'instrukcii.php'" class="form-control btn btn-info">Code for the newspaper</button>
                         </div>
                         <?php } ?>
                     </div>
@@ -203,7 +203,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_GET['del'])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script>
                 function dn(id) {
-                    if (confirm("Потвърди/Confirm")) {
+                    if (confirm("Confirm")) {
                         location.href = '<?php echo $self; ?>?del=' + id;
                     }
                 }

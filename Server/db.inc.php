@@ -1,5 +1,7 @@
 <?php
 session_start();
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 
 class MyDB extends SQLite3 {
 
@@ -11,30 +13,10 @@ class MyDB extends SQLite3 {
 
 $dblink = new MyDB();
 
-
-$database = 'u653658691_kur';
-$user = 'u653658691_kur';
-$pass = 'kurami';
-$host = 'mysql.hostinger.in';
-
-$sql = 'CREATE TABLE "orders" (
-"id"  INTEGER,
-"caption"  VARCHAR NOT NULL,
-"link"  VARCHAR,
-"date"  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-"priority"  SMALLINT NOT NULL,
-"country"  VARCHAR,
-"importance"  INTEGER DEFAULT 0,
-PRIMARY KEY ("id" ASC)
-);';
-
-//$dblink = mysqli_connect($host, $user, $pass) or die(mysqli_error($dblink));
-//mysqli_select_db($dblink, $database) or die(mysqli_error($dblink));
-//mysqli_query($dblink, "SET names utf8");
+$sessionName = 'loggedIn'; // in case that someone abuses the script and should invalidate logged users
 
 $self = "index.php";
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
+
 $countries = array();
 
 $countries[167] = "Albania";
@@ -122,9 +104,8 @@ $flags = array(
     7 => "http://i61.tinypic.com/2wnd5hs.jpg",
 );
 
-$sessionName = 'loggedIn';
 
-$defaults = array();
+$defaults = array(); // default texts for easy copy/paste to newspaper / battle orders etc. BBCode can be used
 
 $defaults['header'] = '[img]https://s6.postimg.cc/ihiw4ej7l/header_01.png[/img][url=https://www.erepublik.com/en/newspaper/president-of-ebulgaria-240346/1][img]https://s6.postimg.cc/87gh543lt/header_02.png[/img][/url][url=https://www.erepublik.com/en/newspaper/armeiski-vestnik-159791/1][img]https://s6.postimg.cc/beb0oqvrl/header_03.png[/img][/url][url=https://www.erepublik.com/en/newspaper/bg-foreign-affairs-office-236795/1][img]https://s6.postimg.cc/uje9yii5d/header_04.png[/img][/url][url=https://www.erepublik.com/en/newspaper/bulgarian-high-commission-246755/1][img]https://s6.postimg.cc/qn0y2j4vl/header_05.png[/img][/url][url=https://www.erepublik.com/en/newspaper/bnb-news-141291/1][img]https://s6.postimg.cc/3ybr2yv7l/header_06.png[/img][/url][url=https://www.erepublik.com/en/newspaper/educational-press-220445/1][img]https://s6.postimg.cc/rcjqewkup/header_07.png[/img][/url][url=https://www.erepublik.com/en/newspaper/narodno-subranie-178930/1][img]https://s6.postimg.cc/e8e6280ip/header_08.png[/img][/url][img]https://s6.postimg.cc/pxi5q6z75/header_09.png[/img]
 

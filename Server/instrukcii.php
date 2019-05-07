@@ -1,5 +1,5 @@
 <?php
-require ("db.inc.php");
+require("db.inc.php");
 $self = 'instrukcii.php';
 
 $keys = array('header', 'rws', 'team', 'footer');
@@ -31,10 +31,10 @@ END;
     $data[$key] = $row['value'];
 }
 $stars = "*******";
-$win = 'България 👍 ПЕЧЕЛИ: ';
-$lose = 'България 👎 ГУБИ: ';
-$win2 = "БЪЛГАРИЯ ✅ ПЕЧЕЛИ:\n\n";
-$lose2 = "БЪЛГАРИЯ ❌ ГУБИ: \n\n";
+$win = 'Bulgaria 👍 WINS: ';
+$lose = 'Bulgaria 👎 LOSSES: ';
+$win2 = "BULGAIRA ✅ WINS:\n\n";
+$lose2 = "BULGARIA ❌ LOSSES: \n\n";
 $sql = "SELECT caption, importance  FROM orders WHERE country='Bulgaria' ORDER BY importance DESC, date ASC";
 $q = $dblink->query($sql);
 while ($row = $q->fetchArray(SQLITE3_ASSOC)) {
@@ -55,7 +55,7 @@ $lose = preg_replace('/\,\ $/', '.', $lose);
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Военни инструкции</title>
+        <title>Battle orders</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -92,11 +92,11 @@ $lose = preg_replace('/\,\ $/', '.', $lose);
                         <textarea class="form-control" id="header" name="data[header]"><?php echo $data['header']; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <h3>Инструкции за въстанията</h3>
+                        <h3>RW instructions</h3>
                         <textarea class="form-control" id="top-text" name="data[rws]"><?php echo $data['rws']; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <h3>Битки</h3>
+                        <h3>Battles</h3>
                         <textarea class="form-control" id="battles"><?php
 $sql = <<<END
                                 SELECT 
@@ -133,7 +133,7 @@ END;
 ?></textarea>
                     </div>
                     <div class="form-group">
-                        <h3>Екип</h3>
+                        <h3>Team</h3>
                         <textarea class="form-control" id="team" name="data[team]"><?php echo $data['team']; ?></textarea>
                     </div>
                     <div class="form-group">
@@ -141,25 +141,25 @@ END;
                         <textarea class="form-control" id="footer" name="data[footer]"><?php echo $data['footer']; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success pull-right">Запиши</button>
+                        <button type="submit" class="btn btn-success pull-right">Save</button>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <h2>За вестника</h2>
+                        <h2>For the newspaper</h2>
                         <textarea class="form-control" id="compiled"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="reset" value="" class="btn btn-block btn-danger">Оригинал</button><br>
-                        <button type="button" id="compile" class="btn btn-block btn-success" data-clipboard-target="#compiled">Компилирай/копирай инструкции</button><br>
-                        <button type="button" onclick="location.href = 'index.php'" class="form-control btn btn-info">Задаване на битки</button>
+                        <button type="reset" value="" class="btn btn-block btn-danger">Reset</button><br>
+                        <button type="button" id="compile" class="btn btn-block btn-success" data-clipboard-target="#compiled">Compile / copy orders</button><br>
+                        <button type="button" onclick="location.href = 'index.php'" class="form-control btn btn-info">Set battle orders</button>
                     </div>
                 </div>
                 <?php } ?>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <h2>Shout</h2>
-                        <textarea class="form-control" id="shout" readonly="">Военни инструкции:
+                        <textarea class="form-control" id="shout" readonly="">Battle orders:
 
 <?php echo $win; ?>
 
@@ -167,13 +167,13 @@ END;
 <?php echo $lose; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="compileShout" class="btn btn-block btn-success" data-clipboard-target="#shout">Копирай shout</button><br>
+                        <button type="button" id="compileShout" class="btn btn-block btn-success" data-clipboard-target="#shout">Copy shout</button><br>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <h2>Shout 2</h2>
-                        <textarea class="form-control" id="shout2" readonly="">Военни инструкции:
+                        <textarea class="form-control" id="shout2" readonly="">Battle orders:
 
 <?php echo $win2; ?>
 
@@ -181,7 +181,7 @@ END;
 <?php echo $lose2; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="compileShout2" class="btn btn-block btn-success" data-clipboard-target="#shout2">Копирай shout</button><br>
+                        <button type="button" id="compileShout2" class="btn btn-block btn-success" data-clipboard-target="#shout2">Copy shout</button><br>
                     </div>
                 </div>
             </form>

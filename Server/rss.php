@@ -1,6 +1,8 @@
 <?php
 
-require ("db.inc.php");
+// RSS XML output for RSS readers
+
+require("db.inc.php");
 
 $orders = array();
 $sql = "SELECT * FROM `orders` ORDER BY `priority` DESC, `id` ASC";
