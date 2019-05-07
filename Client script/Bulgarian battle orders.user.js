@@ -3,6 +3,7 @@
 // @include      /^https:\/\/www\.erepublik\.com\/[a-z]{2}$/
 // @include     *www.erepublik.com/*/military/battlefield/*
 // @include     *www.erepublik.com/*/military/campaigns*
+// @connect     zoya.cybcom.net
 // @connect     docs.google.com
 // @version     0.1
 // @grant       GM_xmlhttpRequest
@@ -11,7 +12,7 @@
 // @namespace   https://greasyfork.org/users/2402
 // ==/UserScript==
 
-var serverUrl = "https://zoya.cybcom.net/Ryapa/Server";
+var serverUrl = "https://zoya.cybcom.net/Ryapa/Server"; // don't forget to change @connect above
 
 function toHHMMSS (num) {
     var sec_num = parseInt(num, 10);
