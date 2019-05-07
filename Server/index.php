@@ -22,7 +22,7 @@ if (!empty($_SESSION[$sessionName]) && !empty($_POST['caption'])) {
     exit;
 }
 if (!empty($_POST['username'])) {
-    if ($_POST['username'] == 'master' and $_POST['password'] == 'Dr$mAQu33n') { // user/password in plain text. Can be changed. :-D
+    if ($_POST['username'] == 'master' and $_POST['password'] == 'Pl4inT$xtPass') { // user/password in plain text. Can be changed. :-D
         $_SESSION[$sessionName] = true;
         header("Location: $self");
         exit;
