@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Admin set battle orders for erepublik
-// @version      0.1
+// @name         Admin set french battle orders for erepublik
+// @version      0.2
 // @description  Setting battle orders
 // @author       N.Tsvetkov
 // @match        *.erepublik.com/*
@@ -8,8 +8,8 @@
 // @namespace https://greasyfork.org/users/2402
 // ==/UserScript==
 
-var serverUrl = "https://zoya.cybcom.net/Ryapa/Server";
-var myCountryId = 42; // Bulgaria
+var serverUrl = "https://erep4efrance.000webhostapp.com/";
+var myCountryId = 11; // France
 
 var $ = jQuery;
 var countryIds = {
