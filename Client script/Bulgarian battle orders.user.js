@@ -5,7 +5,7 @@
 // @include     *www.erepublik.com/*/military/campaigns*
 // @connect     erep4efrance.000webhostapp.com
 // @connect     docs.google.com
-// @version     0.2
+// @version     0.5
 // @grant       GM_xmlhttpRequest
 // @grant       unsafeWindow
 // @description Erepublik battle orders for erepublik players
@@ -137,6 +137,7 @@ function damage() {
                 zId = sd.zoneId,
                 lbId = sd.leftBattleId,
                 muId = sd.militaryUnitId,
+                division = sd.division,
                 kills = 0,
                 hits = 0,
                 nick = $('.profileDetails a').first().text().trim(),
@@ -166,31 +167,32 @@ function damage() {
                         var formData = new FormData();
                         var url = '';
                         if (unsafeWindow.SERVER_DATA.onAirforceBattlefield) {
-                            url = "google form url"; // airforce data
-                            formData.append('entry.', user);
-                            formData.append('entry.', nick);
-                            formData.append('entry.', battle);
-                            formData.append('entry.', dmg);
-                            formData.append('entry.', kills);
-                            formData.append('entry.', zId);
-                            formData.append('entry.', side);
-                            formData.append('entry.', prio);
-                            formData.append('entry.', importance);
-                            formData.append('entry.', hits);
-                            formData.append('entry.', muId);
+                            url = "https://docs.google.com/forms/d/e/1FAIpQLScDFn9_7-0BiKuPcctGds9r4iFl1qa3hkDsM6AV1fO6UNfePA/formResponse"; // airforce data
+                            formData.append('entry.1357004569', user);
+                            formData.append('entry.249776760', nick);
+                            formData.append('entry.1007279600', battle);
+                            formData.append('entry.269803891', dmg);
+                            formData.append('entry.829967175', kills);
+                            formData.append('entry.1839142817', zId);
+                            formData.append('entry.1554792430', side);
+                            formData.append('entry.592455450', prio);
+                            formData.append('entry.1831169045', importance);
+                            formData.append('entry.361769513', hits);
+                            formData.append('entry.142864947', muId);
                         } else { // ground data
-                            url = "google form url";
-                            formData.append('entry.', user);
-                            formData.append('entry.', nick);
-                            formData.append('entry.', battle);
-                            formData.append('entry.', dmg);
-                            formData.append('entry.', kills);
-                            formData.append('entry.', zId);
-                            formData.append('entry.', side);
-                            formData.append('entry.', prio);
-                            formData.append('entry.', importance);
-                            formData.append('entry.', hits);
-                            formData.append('entry.', muId);
+                            url = "https://docs.google.com/forms/d/e/1FAIpQLSeV6h5tbnHAoJlgBgQrf-deo2QMmR6BhXcwCQ20oLwVmLUq5Q/formResponse";
+                            formData.append('entry.1357004569', user[0]);
+                            formData.append('entry.249776760', nick);
+                            formData.append('entry.1007279600', battle[0]);
+                            formData.append('entry.269803891', dmg);
+                            formData.append('entry.829967175', kills);
+                            formData.append('entry.1839142817', zId);
+                            formData.append('entry.1554792430', side);
+                            formData.append('entry.592455450', prio);
+                            formData.append('entry.1831169045', importance);
+                            formData.append('entry.361769513', hits);
+                            formData.append('entry.142864947', muId);
+                            formData.append('entry.357499489', division);
                         }
                         GM_xmlhttpRequest({
                             method: "POST",
