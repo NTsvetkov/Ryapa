@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Admin set french battle orders for erepublik
-// @version      0.2
+// @version      0.3
 // @description  Setting battle orders
 // @author       N.Tsvetkov
 // @match        *.erepublik.com/*
@@ -137,7 +137,7 @@ function battle() {
             formData.append('country', country);
             GM_xmlhttpRequest({
                 method: "POST",
-                url: serverUrl + "/index.php",
+                url: serverUrl + "index.php",
                 data: formData,
                 onload: function(ret) {
                     if (ret.status == 200) {
@@ -156,16 +156,8 @@ function battle() {
 
 function main() {
     $('#hpTopNews').before("<div id='adminlist'></div>");
-    $.ajax({
-        url : "/en/military/campaigns-new/",
-        dataType: "json",
-    })
-        .done(function (b) {
-            $.ajax({
-                url : serverUrl + "/orders.php",
-                dataType: "json",
-            })
-                .done(function (o) {
+    $.getJSON("/en/military/campaigns-new", function (b) {
+        $.getJSON(serverUrl + "orders.php", function (o) {
                     var orders = [];
                     $.each(o, function(i, row) {
                         var href = row.link.match(/[0-9]+$/);
