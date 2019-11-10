@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Admin set french battle orders for erepublik
-// @version      0.3
+// @version      0.31
 // @description  Setting battle orders
 // @author       N.Tsvetkov
 // @match        *.erepublik.com/*
@@ -167,7 +167,7 @@ function main() {
                         if (battle.inv.id == myCountryId || battle.def.id == myCountryId) {
                             var href = battle.id
                             var round = b.battles[href].zone_id;
-                            var reqTime = b.request_time;
+                            var reqTime = b.time;
                             var roundTime = reqTime - b.battles[href].start;
                             var date = new Date(null);
                             date.setSeconds(roundTime);
