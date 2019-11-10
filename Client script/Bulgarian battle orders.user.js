@@ -5,7 +5,7 @@
 // @include     *www.erepublik.com/*/military/campaigns*
 // @connect     erep4efrance.000webhostapp.com
 // @connect     docs.google.com
-// @version     0.6
+// @version     0.61
 // @grant       GM_xmlhttpRequest
 // @grant       unsafeWindow
 // @description Erepublik battle orders for erepublik players
@@ -92,7 +92,7 @@ function main() {
                             var side = row.countryid;
                             if (typeof r.battles[href] != 'undefined') {
                                 var round = r.battles[href].zone_id,
-                                    reqTime = r.request_time,
+                                    reqTime = r.time,
                                     roundTime = reqTime - r.battles[href].start,
                                     date = new Date(null);
                                 date.setSeconds(roundTime);
